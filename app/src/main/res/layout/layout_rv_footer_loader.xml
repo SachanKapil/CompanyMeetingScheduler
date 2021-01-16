@@ -1,0 +1,28 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_5sdp">
+
+        <ProgressBar
+            android:id="@+id/pb_footer"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center_horizontal"
+            android:indeterminateTint="@color/green"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_retry_footer"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_retry"
+            android:visibility="gone"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
+
+</layout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/appbar"
+            layout="@layout/appbar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/btn_schedule_company_meeting"
+                android:layout_marginBottom="@dimen/_10sdp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_meetings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <com.companymeetingscheduler.custom_works.ProgressBarLayout
+                android:id="@+id/progressBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_schedule_company_meeting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@drawable/bg_side_rounded_white_rectangle_8dp"
+                android:backgroundTint="@color/green"
+                android:fontFamily="@font/dm_sans_bold"
+                android:paddingStart="@dimen/_15sdp"
+                android:paddingEnd="@dimen/_15sdp"
+                android:text="@string/action_schedule_company_meeting"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>
+
