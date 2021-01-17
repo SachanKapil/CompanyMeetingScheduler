@@ -37,7 +37,7 @@ fun View.disable() {
     isEnabled = false
 }
 
-fun TextView.setDateInToolbar(date: String) {
+fun TextView.setMeetingDateInToolbar(date: String) {
     text = AppUtils.getDateWithUpdatedFormat(
         date,
         AppConstants.DateFormatConstants.DATE_FORMAT_YYYY_MM_DD,
@@ -46,6 +46,14 @@ fun TextView.setDateInToolbar(date: String) {
         } else {
             AppConstants.DateFormatConstants.DATE_FORMAT_EEEE_DD_MM_YYYY
         }
+    )
+}
+
+fun TextView.setMeetingDate(date: String) {
+    text = AppUtils.getDateWithUpdatedFormat(
+        date,
+        AppConstants.DateFormatConstants.DATE_FORMAT_YYYY_MM_DD,
+        AppConstants.DateFormatConstants.DATE_FORMAT_DD_MM_YYYY
     )
 }
 

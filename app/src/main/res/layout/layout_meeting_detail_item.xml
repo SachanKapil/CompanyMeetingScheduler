@@ -30,8 +30,7 @@
                 android:layout_height="@dimen/_1sdp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="@dimen/_3sdp"
-                android:background="@color/grey_three"
-                android:textSize="@dimen/_12ssp" />
+                android:background="@color/grey_three" />
 
             <TextView
                 android:id="@+id/tv_end_time"
@@ -49,8 +48,7 @@
             android:layout_height="@dimen/_1sdp"
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="@dimen/_15sdp"
-            android:background="@color/grey"
-            android:textSize="@dimen/_12ssp" />
+            android:background="@color/grey" />
 
         <TextView
             android:id="@+id/tv_desc"
@@ -69,8 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:layout_gravity="center_vertical"
-            android:background="@color/grey"
-            android:textSize="@dimen/_12ssp" />
+            android:background="@color/grey" />
 
     </LinearLayout>
 

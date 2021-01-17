@@ -35,22 +35,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <Button
                 android:id="@+id/btn_schedule_company_meeting"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/OrangeRectangularButtonStyle"
                 android:layout_alignParentBottom="true"
-                android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@drawable/bg_side_rounded_white_rectangle_8dp"
-                android:backgroundTint="@color/green"
-                android:fontFamily="@font/dm_sans_bold"
-                android:paddingStart="@dimen/_15sdp"
-                android:paddingEnd="@dimen/_15sdp"
-                android:text="@string/action_schedule_company_meeting"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_11ssp" />
+                android:text="@string/action_schedule_company_meeting" />
 
         </RelativeLayout>
 

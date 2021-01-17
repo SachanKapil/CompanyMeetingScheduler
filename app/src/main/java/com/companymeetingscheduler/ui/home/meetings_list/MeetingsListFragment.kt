@@ -10,11 +10,12 @@ import com.airhireme.base.BaseFragment
 import com.companymeetingscheduler.R
 import com.companymeetingscheduler.data.model.meetings.MeetingDetailItem
 import com.companymeetingscheduler.databinding.FragmentMeetingsListBinding
+import com.companymeetingscheduler.ui.home.HomeViewModel
 import com.companymeetingscheduler.utils.AppUtils
-import com.companymeetingscheduler.utils.enable
-import com.companymeetingscheduler.utils.setDateInToolbar
+import com.companymeetingscheduler.utils.setMeetingDateInToolbar
 import kotlinx.android.synthetic.main.layout_progress_bar.view.*
 import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
 
 class MeetingsListFragment : BaseFragment<FragmentMeetingsListBinding>(),
     SwipeRefreshLayout.OnRefreshListener, MeetingsListAdapter.MeetingsListAdapterListener,
@@ -22,7 +23,7 @@ class MeetingsListFragment : BaseFragment<FragmentMeetingsListBinding>(),
     private lateinit var binding: FragmentMeetingsListBinding
     private lateinit var host: IMeetingListFragmentHost
     private lateinit var adapter: MeetingsListAdapter
-    private lateinit var viewModel: MeetingsListViewModel
+    private lateinit var viewModel: HomeViewModel
 
     companion object {
         fun getInstance(): MeetingsListFragment {
@@ -54,7 +55,7 @@ class MeetingsListFragment : BaseFragment<FragmentMeetingsListBinding>(),
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this)[MeetingsListViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -86,6 +87,7 @@ class MeetingsListFragment : BaseFragment<FragmentMeetingsListBinding>(),
         } ?: let {
             if (AppUtils.isNetworkAvailable(requireContext())) {
                 binding.progressBarLayout.showLoading()
+                viewModel.meetingsList = adapter.getList()
                 hitGetMeetingsListApi()
             } else {
                 binding.progressBarLayout.setErrorWithRetryButton(getString(R.string.message_no_internet_connection))
@@ -140,32 +142,6 @@ class MeetingsListFragment : BaseFragment<FragmentMeetingsListBinding>(),
             })
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        viewModel.meetingsList = adapter.getList()
-    }
-
-    override fun onRefresh() {
-        if (AppUtils.isNetworkAvailable(requireContext())) {
-            hitGetMeetingsListApi()
-        } else {
-            binding.refreshLayout.isRefreshing = false
-            showToastShort(getString(R.string.message_no_internet_connection))
-        }
-    }
-
-    private fun hitGetMeetingsListApi() {
-        viewModel.hitGetMeetingsListApi()
-    }
-
-    override fun onMeetingItemClick(gifBean: MeetingDetailItem) {
-        showToastShort("onMeetingItemClick")
-    }
-
-    interface IMeetingListFragmentHost {
-        fun openScheduleMeetingFragment()
-    }
-
     override fun onClick(v: View?) {
         when (v) {
             binding.progressBarLayout.btnTryAgain -> {
@@ -205,13 +181,39 @@ class MeetingsListFragment : BaseFragment<FragmentMeetingsListBinding>(),
                 if (viewModel.selectedDate.isBefore(LocalDate.now())) {
                     showToastShort(getString(R.string.message_you_can_not_schedule_meeting_for_past_date))
                 } else {
-                    binding.btnScheduleCompanyMeeting.enable()
+                    viewModel.startTimeField.value = null
+                    viewModel.endTimeField.value = null
+                    viewModel.descriptionField.value = null
+                    viewModel.selectedStartTime = LocalDateTime.now().withSecond(0).withNano(0)
+                    viewModel.selectedEndTime = LocalDateTime.now().withSecond(0).withNano(0)
+                    host.openScheduleMeetingFragment()
                 }
             }
         }
     }
 
     private fun handleUI() {
-        binding.appbar.tvTitle.setDateInToolbar(viewModel.selectedDate.toString())
+        binding.appbar.tvTitle.setMeetingDateInToolbar(viewModel.selectedDate.toString())
+    }
+
+    override fun onRefresh() {
+        if (AppUtils.isNetworkAvailable(requireContext())) {
+            hitGetMeetingsListApi()
+        } else {
+            binding.refreshLayout.isRefreshing = false
+            showToastShort(getString(R.string.message_no_internet_connection))
+        }
+    }
+
+    private fun hitGetMeetingsListApi() {
+        viewModel.hitGetMeetingsListApi()
+    }
+
+    override fun onMeetingItemClick(meetingDetailItem: MeetingDetailItem) {
+        showToastShort("onMeetingItemClick")
+    }
+
+    interface IMeetingListFragmentHost {
+        fun openScheduleMeetingFragment()
     }
 }

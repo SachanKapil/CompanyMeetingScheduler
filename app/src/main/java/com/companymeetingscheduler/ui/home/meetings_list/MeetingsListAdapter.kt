@@ -83,10 +83,13 @@ class MeetingsListAdapter(private val listener: MeetingsListAdapterListener) :
                 }
                 text = attendeesString
             }
+            binding.root.setOnClickListener {
+                listener.onMeetingItemClick(item)
+            }
         }
     }
 
     interface MeetingsListAdapterListener {
-        fun onMeetingItemClick(gifBean: MeetingDetailItem)
+        fun onMeetingItemClick(meetingDetailItem: MeetingDetailItem)
     }
 }

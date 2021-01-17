@@ -1,4 +1,4 @@
-package com.companymeetingscheduler.ui.home.meetings_list
+package com.companymeetingscheduler.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import com.companymeetingscheduler.base.NetworkCallback
@@ -9,7 +9,7 @@ import com.companymeetingscheduler.data.model.WrappedResponse
 import com.companymeetingscheduler.data.model.meetings.GetMeetingsListRequest
 import com.companymeetingscheduler.data.model.meetings.MeetingDetailItem
 
-class MeetingsListRepo {
+class HomeRepo {
 
     internal fun hitGetMeetingsListApi(getMeetingsListRequest: GetMeetingsListRequest): MutableLiveData<Event<WrappedResponse<ArrayList<MeetingDetailItem>>>> {
 

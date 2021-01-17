@@ -3,6 +3,7 @@
 
     <!--Actions-->
     <string name="action_try_again">Try Again</string>
+    <string name="action_schedule_company_meeting">Schedule Company Meeting</string>
 
     <!--Text-->
     <string name="txt_back">Back</string>
@@ -14,12 +15,22 @@
 
     <!--Message-->
     <string name="message_something_went_wrong">Something went wrong</string>
+    <string name="message_you_can_not_schedule_meeting_for_past_date">You can not schedule meeting for past date</string>
 
     <!--    All No Data Fount Messages-->
     <string name="message_no_internet_connection">No Internet Connection</string>
     <string name="message_no_meeting_scheduled">No Meeting Scheduled</string>
-    <string name="action_schedule_company_meeting">Schedule Company Meeting</string>
-    <string name="message_you_can_not_schedule_meeting_for_past_date">You can not schedule meeting for past date</string>
-
+    <string name="action_submit">Submit</string>
+    <string name="hint_meeting_date">Meeting Date</string>
+    <string name="hint_start_time">Start Time</string>
+    <string name="hint_end_time">End Time</string>
+    <string name="hint_description">Description</string>
+    <string name="message_please_select_start_time">Please select start time</string>
+    <string name="message_please_select_end_time">Please select end time</string>
+    <string name="message_please_enter_description">Please enter description</string>
+    <string name="message_start_time_can_not_be_past_time">Start time can not be past time</string>
+    <string name="message_end_time_must_be_greater_than_start_time">End time must be greater than start time</string>
+    <string name="message_slot_available">Slot available</string>
+    <string name="message_slot_not_available">Slot not available</string>
 
 </resources>
